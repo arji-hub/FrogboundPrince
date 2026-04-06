@@ -103,4 +103,20 @@ public class GameManager : MonoBehaviour
         transition.SetTrigger("start");
     }
 
+    
+    public void selectLevel(int index)
+    {
+        audioManager.PlaySFX(audioManager.buttonClick);
+        StartCoroutine(LoadSelectedLevel(index));
+    }
+
+    IEnumerator LoadSelectedLevel(int index)
+    {
+        transition.SetTrigger("end");
+        yield return new WaitForSeconds(1f);
+        Debug.Log("Loading level: " + index);
+        SceneManager.LoadScene(index);
+        transition.SetTrigger("start");
+    }
+
 }
